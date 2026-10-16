@@ -93,12 +93,11 @@ Usa esta tabla como puente rapido desde una regla o intencion en `.clinerules` h
 
 ### orchestration-research-workflow
 Purpose:
-- orchestrate end-to-end research workflow
-- diagnose stage and select or confirm the route
-- dispatch stage owner, method override, and supporting skills in precedence order
-- require causal, structural, or hybrid outputs without conflating them
-- route failed gates back to acquisition, preparation, design, strategy, or implementation
-- connect idea, evidence, writing, and submission
+- set up a paper project (commit 0) and run it in eight phases closed by author gates
+- diagnose the phase and select or confirm the route (causal, historical-structural, hybrid)
+- activate only the skills the next gate needs; produce only what the gate needs to decide
+- route failed gates back to the phase that owns the decision
+- BITACORA.md and git replace the skill execution log
 
 ### research-strategy-choice
 Purpose:

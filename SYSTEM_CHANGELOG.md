@@ -2,6 +2,22 @@
 
 This file records dated migrations and material changes to the skills system. See `ARCHITECTURE_REPORT.md` for the current architecture and `PRECHANGE_INVENTORY.txt` for the original inventory.
 
+## 2026-10-16 - Orchestration in eight gated phases
+
+- `orchestration-research-workflow` rewritten: eight phases (0 setup · 1 question
+  and literature · 2 sources and hypotheses · 3 strategy and design · 4 data ·
+  5 analysis and interpretation · 6 drafting and internal review · 7 submission
+  and resubmission), each closed by an author gate recorded in `BITACORA.md`,
+  committed and tagged `fase-N`. Stages 0–19 stay as the detailed map other
+  skills cite.
+- New-project mode (commit 0): minimal skeleton, logbook, brief index, source
+  inventory with rights, private repository from day one.
+- Precedence: `GLOBAL_INSTRUCTIONS.md` > this skill > `shared/`. Shared
+  contracts are a menu, not a checklist; `BITACORA.md` and git replace
+  `project/skill_execution_log.csv`.
+- `G-LITERATURE-ORIENTATION`: read a small core before any search or screening
+  at scale; extension starts from what was read (lesson of ia_course, Oct 2026).
+
 ## 2026-10-16 - Back to local disk, fully versioned; global instructions
 
 - The core moves from OneDrive (`AlexF/SKILLS_IA/codex/skills`) back to
