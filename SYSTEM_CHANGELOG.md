@@ -2,6 +2,12 @@
 
 This file records dated migrations and material changes to the skills system. See `ARCHITECTURE_REPORT.md` for the current architecture and `PRECHANGE_INVENTORY.txt` for the original inventory.
 
+## 2026-10-16 - Self-contained README
+
+- `README.md`: where the system lives, contents, installation on a new machine,
+  daily use and pending migration steps (second computer, research projects in
+  OneDrive). The system no longer depends on notes kept in any project.
+
 ## 2026-10-16 - Orchestration in eight gated phases
 
 - `orchestration-research-workflow` rewritten: eight phases (0 setup · 1 question
@@ -16,7 +22,8 @@ This file records dated migrations and material changes to the skills system. Se
   contracts are a menu, not a checklist; `BITACORA.md` and git replace
   `project/skill_execution_log.csv`.
 - `G-LITERATURE-ORIENTATION`: read a small core before any search or screening
-  at scale; extension starts from what was read (lesson of ia_course, Oct 2026).
+  at scale; extension starts from what was read (a literature review in October 2026 screened about
+  10,000 records before reading and made little progress on its question).
 
 ## 2026-10-16 - Back to local disk, fully versioned; global instructions
 
