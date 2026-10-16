@@ -1,0 +1,4 @@
+interface:
+  display_name: "Response to Reviewers"
+  short_description: "Traceable editor and reviewer response planning"
+  default_prompt: "Use $revision-response-to-reviewers to plan and draft a traceable response to these review reports."

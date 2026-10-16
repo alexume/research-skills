@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agrarian-Environmental Review"
+  short_description: "Specialist agrarian and environmental history review"
+  default_prompt: "Use $review-agrarian-environmental-history to review the agrarian and environmental historical logic of this manuscript."

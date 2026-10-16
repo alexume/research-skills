@@ -1,0 +1,4 @@
+interface:
+  display_name: "Claim-Evidence Mapping"
+  short_description: "Audit claims and trigger exact evidence actions"
+  default_prompt: "Use $research-claim-evidence-mapping to audit these claims, state warranted wording, and define evidence actions."

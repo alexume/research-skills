@@ -1,0 +1,4 @@
+interface:
+  display_name: "Academic Manuscript Review"
+  short_description: "Referee, coauthor, and editor-style manuscript review"
+  default_prompt: "Use $review-reviewer-core to reconstruct this manuscript and review its argument against the declared journal family."

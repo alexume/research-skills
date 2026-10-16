@@ -1,0 +1,4 @@
+interface:
+  display_name: "Submission Cover Letter"
+  short_description: "Journal-calibrated academic cover letters"
+  default_prompt: "Use $submission-cover-letter to draft a concise cover letter for this journal submission."

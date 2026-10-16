@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Strategy Choice"
+  short_description: "Choose causal, structural, or hybrid research"
+  default_prompt: "Use $research-strategy-choice to determine the strongest defensible research route for this project."

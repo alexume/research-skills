@@ -1,0 +1,4 @@
+interface:
+  display_name: "Doctoral Proposal Review"
+  short_description: "Developmental review of doctoral research proposals"
+  default_prompt: "Use $review-doctoral-proposal to provide a rigorous developmental review of this doctoral proposal."

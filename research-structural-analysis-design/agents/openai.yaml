@@ -1,0 +1,4 @@
+interface:
+  display_name: "Structural Analysis Design"
+  short_description: "Design mechanism-centered historical explanation"
+  default_prompt: "Use $research-structural-analysis-design to formalize this historical-structural research design."

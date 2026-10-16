@@ -1,0 +1,34 @@
+---
+title: "Critical Manuscript Review"
+format:
+  pdf:
+    documentclass: article
+    geometry: margin=2.5cm
+    fontsize: 11pt
+toc: true
+number-sections: true
+---
+
+# Summary
+
+# Main Contribution
+
+# Core Structural Weaknesses
+
+# Conceptual Coherence
+
+# Historical Logic
+
+# Methodological Coherence
+
+# Interpretation of Results
+
+# Literature Positioning
+
+# Structure and Presentation
+
+# Major Revisions Required
+
+# Minor Revisions
+
+# Final Assessment

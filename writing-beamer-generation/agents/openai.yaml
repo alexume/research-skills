@@ -1,0 +1,4 @@
+interface:
+  display_name: "Quarto Beamer"
+  short_description: "Academic Quarto Beamer presentation design"
+  default_prompt: "Use $writing-beamer-generation to build a coherent academic presentation from these research materials."

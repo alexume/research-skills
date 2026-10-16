@@ -1,0 +1,4 @@
+interface:
+  display_name: "Knowledge Ingestion"
+  short_description: "Source-faithful KnowledgeWiki literature ingestion"
+  default_prompt: "Use $knowledge-ingestion to extract this scholarly source into a controlled KnowledgeWiki fiche."

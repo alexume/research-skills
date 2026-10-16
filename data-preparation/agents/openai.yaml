@@ -1,0 +1,4 @@
+interface:
+  display_name: "Data Preparation"
+  short_description: "Clean, simple, reproducible data preparation in R"
+  default_prompt: "Use $data-preparation to prepare these data with a simple commented R pipeline and proportionate validation."

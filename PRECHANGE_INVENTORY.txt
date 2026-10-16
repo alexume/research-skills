@@ -1,0 +1,18 @@
+Pre-change inventory
+Skill folders with SKILL.md:
+- agrarian_environmental_history/SKILL.md
+- causal_historical_logic/SKILL.md
+- ecological_economics/SKILL.md
+- reviewer_core/SKILL.md
+Loose prompt files:
+- beamer-generation.promt.md
+- causal-analysis.prompt.md
+- causal-identification.prompt.md
+- data-exploration.prompt.md
+- data-preparation.prompt.md
+- figure-aesthetics.prompt.md
+- hypothesis-generation.prompt.md
+- hypothesis-refinement.prompt.md
+- literature-review.prompt.md
+- paper-draft.prompt.md
+Backup created: C:\Users\alex.urrego.mesa\.codex\skills_backup_20260514_180348

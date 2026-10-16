@@ -1,0 +1,52 @@
+version: 2
+description: "Project-level publication and code requirements. Copy to project/project_profile.yaml and complete all required fields before substantive work."
+
+manuscript:
+  language: null
+  source_format: "qmd"
+  required_render_formats:
+    - "pdf"
+  optional_render_formats:
+    - "html"
+  pdf_engine: "lualatex"
+  # development-environment | ecological-economics-sustainability |
+  # economic-history | agrarian-environmental-political-economy
+  journal_family: null
+  target_journal: null
+
+figures:
+  generated_with: "R"
+  inclusion_method: "quarto-crossref"
+  require_source_code: true
+  required_export_formats:
+    - "png"
+  preview_export_formats: []
+  raw_latex_only_when_required: true
+
+tables:
+  inclusion_method: "quarto-crossref"
+  require_stable_ids: true
+  require_manifest: true
+  allowed_locations:
+    - "main"
+    - "appendix"
+    - "excluded"
+  raw_latex_only_when_required: true
+
+r_code:
+  style: "tidyverse"
+  pipe: "native"
+  require_styler_check: true
+  require_lintr_check: true
+  require_explicit_namespaces_in_reusable_code: true
+  exceptions_must_be_documented: true
+
+rendering:
+  clean_render_required: true
+  fail_on_missing_crossrefs: true
+  fail_on_missing_citations: true
+  require_current_pdf: true
+
+audit:
+  require_skill_execution_log: true
+  require_authorial_revision_log: true

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Title Abstract Keywords"
+  short_description: "Journal-calibrated titles, abstracts, and keywords"
+  default_prompt: "Use $writing-title-abstract-keywords to prepare submission-facing metadata for this manuscript."

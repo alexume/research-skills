@@ -1,0 +1,4 @@
+interface:
+  display_name: "Causal-Historical Review"
+  short_description: "Audit causal identification against historical logic"
+  default_prompt: "Use $review-causal-historical-logic to assess whether this causal argument is historically and institutionally coherent."

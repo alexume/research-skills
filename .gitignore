@@ -1,0 +1,11 @@
+# Managed by the tools, not by the author
+.system/
+synced/
+.cache/
+.vscode/
+.agents/
+
+# Superseded by git history; the copy stays in the OneDrive archive
+.writing-system-backup-*/
+
+__pycache__/

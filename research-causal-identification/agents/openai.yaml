@@ -1,0 +1,4 @@
+interface:
+  display_name: "Causal Identification"
+  short_description: "Select and formalize causal identification designs"
+  default_prompt: "Use $research-causal-identification to compare causal designs and produce an implementation handoff."

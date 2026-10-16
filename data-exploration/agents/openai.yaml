@@ -1,0 +1,4 @@
+interface:
+  display_name: "Data Exploration"
+  short_description: "Structured exploratory analysis in R"
+  default_prompt: "Use $data-exploration to audit and explore this dataset before confirmatory analysis."

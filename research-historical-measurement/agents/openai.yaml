@@ -1,0 +1,4 @@
+interface:
+  display_name: "Historical Measurement"
+  short_description: "Design and audit comparable historical measures"
+  default_prompt: "Use $research-historical-measurement to translate this historical concept into documented and comparable measures."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Modern Difference-in-Differences"
+  short_description: "Design-aware modern DiD implementation in R"
+  default_prompt: "Use $implementation-difference-in-differences to implement and assess this difference-in-differences design."

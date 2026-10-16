@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Reproducibility"
+  short_description: "Reproducible workflows and replication packages"
+  default_prompt: "Use $research-reproducibility-and-replication to design, audit, or verify this research workflow and replication package."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tables and Appendices"
+  short_description: "Build academic tables and analytical appendices"
+  default_prompt: "Use $implementation-tables-and-appendices to produce traceable publication tables and analytical appendices."

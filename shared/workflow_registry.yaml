@@ -1,0 +1,505 @@
+version: 2
+purpose: "Machine-readable routing registry for the academic research workflow."
+
+precedence:
+  routing: "workflow_registry.yaml"
+  stage_detail: "project_stages.md"
+  output_completion: "output_contracts.md"
+  quality_decision: "stage_gates.md"
+
+routes:
+  causal:
+    design_skills:
+      - "research-causal-identification"
+      - "research-historical-measurement"
+    implementation_default:
+      - "implementation-causal-analysis"
+    implementation_by_method:
+      did:
+        - "implementation-difference-in-differences"
+    interpretation_skills:
+      - "research-mechanism-mapping"
+      - "review-causal-historical-logic"
+      - "research-claim-evidence-mapping"
+  historical-structural:
+    design_skills:
+      - "research-structural-analysis-design"
+      - "research-mechanism-mapping"
+      - "research-historical-source-criticism"
+      - "research-historical-measurement"
+    implementation_default:
+      - "implementation-historical-structural-analysis"
+    interpretation_skills:
+      - "research-claim-evidence-mapping"
+      - "review-causal-historical-logic"
+      - "review-agrarian-environmental-history"
+      - "review-ecological-economics"
+  hybrid:
+    design_skills:
+      - "research-strategy-choice"
+      - "research-structural-analysis-design"
+      - "research-causal-identification"
+      - "research-mechanism-mapping"
+      - "research-historical-source-criticism"
+      - "research-historical-measurement"
+    implementation_default:
+      - "implementation-historical-structural-analysis"
+      - "implementation-causal-analysis"
+    implementation_by_method:
+      did:
+        - "implementation-difference-in-differences"
+    interpretation_skills:
+      - "research-claim-evidence-mapping"
+      - "review-causal-historical-logic"
+
+cross_cutting_skills:
+  reproducibility: "research-reproducibility-and-replication"
+
+stages:
+  - id: 0
+    key: "setup"
+    owner: "orchestration-research-workflow"
+    supporting_skills:
+      - "research-reproducibility-and-replication"
+    inputs:
+      - "research idea"
+      - "initial references"
+      - "available data or source leads"
+    outputs:
+      - "project/setup_manifest.md"
+      - "project/project_profile.yaml"
+      - "project/project_log.md"
+      - "project/skill_execution_log.csv"
+      - "project/source_inventory.csv"
+      - "project/reproducibility_plan.md"
+    gate: null
+  - id: 1
+    key: "literature-orientation"
+    owner: "literature-review"
+    supporting_skills:
+      - "knowledge-ingestion"
+      - "wiki-consult"
+    inputs:
+      - "research topic"
+      - "initial references"
+      - "local literature corpus"
+    outputs:
+      - "literature/search_strategy.qmd"
+      - "literature/research_question_handoff.qmd"
+      - "literature/references.bib"
+      - "literature/source_discovery_log.csv"
+      - "literature/screening_log.csv"
+      - "literature/data_source_candidates.csv"
+    gate: "G-LITERATURE-ORIENTATION"
+  - id: 2
+    key: "literature-maturation"
+    owner: "literature-review"
+    supporting_skills:
+      - "wiki-consult"
+      - "knowledge-ingestion"
+      - "research-evidence-discovery-and-acquisition"
+    inputs:
+      - "literature/research_question_handoff.qmd"
+      - "literature/search_strategy.qmd"
+      - "literature/references.bib"
+      - "literature/source_discovery_log.csv"
+    outputs:
+      - "literature/literature-review.qmd"
+      - "literature/recent_literature.qmd"
+      - "literature/debate_matrix.csv"
+      - "literature/source_discovery_log.csv"
+      - "literature/screening_log.csv"
+      - "literature/extraction_matrix.csv"
+      - "literature/data_source_candidates.csv"
+      - "literature/references.bib"
+    gate: "G-LITERATURE"
+  - id: 3
+    key: "hypotheses-v1"
+    owner: "research-hypothesis-generation"
+    supporting_skills:
+      - "research-mechanism-mapping"
+    inputs:
+      - "literature/research_question_handoff.qmd"
+      - "literature/literature-review.qmd"
+      - "literature/data_source_candidates.csv"
+      - "historical context"
+      - "preliminary patterns"
+    outputs:
+      - "analysis/hypotheses_v1.qmd"
+    gate: "G-HYPOTHESES"
+  - id: 4
+    key: "exploratory-assessment"
+    owner: "data-exploration"
+    supporting_skills:
+      - "knowledge-ingestion"
+      - "research-historical-source-criticism"
+      - "research-historical-measurement"
+    inputs:
+      - "datasets"
+      - "source corpus"
+      - "codebooks or archival metadata"
+    outputs:
+      - "analysis/exploratory.qmd"
+      - "scripts/eda.R"
+      - "analysis/data_source_quality.md"
+      - "analysis/source_criticism.qmd"
+      - "analysis/measurement_strategy.qmd"
+      - "analysis/eda_decision_log.md"
+      - "project/historical_source_registry.csv"
+    gate: "G-EXPLORATION"
+  - id: 5
+    key: "hypotheses-v2"
+    owner: "research-hypothesis-refinement"
+    supporting_skills:
+      - "research-mechanism-mapping"
+      - "literature-review"
+    inputs:
+      - "analysis/hypotheses_v1.qmd"
+      - "analysis/exploratory.qmd"
+      - "literature/research_question_handoff.qmd"
+      - "literature/literature-review.qmd"
+      - "literature/data_source_candidates.csv"
+    outputs:
+      - "analysis/hypotheses_v2.qmd"
+    gate: "G-HYPOTHESES"
+  - id: 6
+    key: "strategy-choice"
+    owner: "research-strategy-choice"
+    supporting_skills: []
+    inputs:
+      - "analysis/hypotheses_v2.qmd"
+      - "analysis/exploratory.qmd"
+      - "source and data availability"
+    outputs:
+      - "analysis/research_strategy.qmd"
+    gate: "G-STRATEGY"
+  - id: 7
+    key: "design"
+    owner_by_route:
+      causal: "research-causal-identification"
+      historical-structural: "research-structural-analysis-design"
+      hybrid: "research-strategy-choice"
+    supporting_by_route:
+      causal:
+        - "research-mechanism-mapping"
+        - "research-historical-measurement"
+      historical-structural:
+        - "research-mechanism-mapping"
+        - "research-historical-source-criticism"
+        - "research-historical-measurement"
+      hybrid:
+        - "research-causal-identification"
+        - "research-structural-analysis-design"
+        - "research-mechanism-mapping"
+        - "research-historical-source-criticism"
+        - "research-historical-measurement"
+    inputs:
+      - "analysis/research_strategy.qmd"
+      - "analysis/hypotheses_v2.qmd"
+    outputs_by_route:
+      causal:
+        - "analysis/causal_design.qmd"
+        - "analysis/identification_strategy.qmd"
+        - "analysis/measurement_strategy.qmd"
+      historical-structural:
+        - "analysis/structural_analysis_design.qmd"
+        - "analysis/mechanism_map.qmd"
+        - "analysis/measurement_strategy.qmd"
+      hybrid:
+        - "analysis/causal_design.qmd"
+        - "analysis/structural_analysis_design.qmd"
+        - "analysis/mechanism_map.qmd"
+        - "analysis/hybrid_integration_plan.md"
+        - "analysis/measurement_strategy.qmd"
+    gate: "G-DESIGN"
+  - id: 8
+    key: "requirements-acquisition"
+    owner: "research-evidence-discovery-and-acquisition"
+    supporting_skills:
+      - "literature-review"
+      - "data-preparation"
+      - "knowledge-ingestion"
+      - "research-historical-source-criticism"
+      - "research-historical-measurement"
+    inputs:
+      - "route-specific design outputs"
+      - "literature/data_source_candidates.csv"
+    outputs:
+      - "analysis/data_requirements.qmd"
+      - "analysis/source_requirements.qmd"
+      - "project/evidence_discovery_log.csv"
+      - "project/acquisition_log.csv"
+      - "project/acquisition_manifest.md"
+      - "data/raw/"
+    gate: "G-REQUIREMENTS"
+  - id: 9
+    key: "preparation"
+    owner: "data-preparation"
+    supporting_skills:
+      - "knowledge-ingestion"
+      - "research-historical-source-criticism"
+      - "research-historical-measurement"
+      - "research-reproducibility-and-replication"
+    inputs:
+      - "acquired data and sources"
+      - "requirements outputs"
+    outputs:
+      - "data/clean/"
+      - "data/interim/"
+      - "scripts/"
+      - "analysis/preparation_manifest.md"
+      - "analysis/data_validation.md"
+      - "analysis/r_code_quality.md"
+      - "project/historical_source_registry.csv"
+      - "data/metadata/variable_dictionary.csv"
+      - "data/metadata/measurement_decisions.csv"
+      - "analysis/computational_environment.md"
+    gate: "G-PREPARATION"
+  - id: 10
+    key: "feasibility-design-update"
+    owner_by_route:
+      causal: "implementation-causal-analysis"
+      historical-structural: "implementation-historical-structural-analysis"
+      hybrid: "orchestration-research-workflow"
+    method_override:
+      did: "implementation-difference-in-differences"
+    supporting_skills:
+      - "research-historical-source-criticism"
+      - "research-historical-measurement"
+      - "research-reproducibility-and-replication"
+    inputs:
+      - "clean data or organized source corpus"
+      - "route-specific design outputs"
+    outputs_by_route:
+      causal:
+        - "analysis/feasibility.qmd"
+        - "analysis/inference_plan.qmd"
+        - "updated causal design output"
+      historical-structural:
+        - "analysis/feasibility.qmd"
+        - "updated structural design output"
+      hybrid:
+        - "analysis/feasibility.qmd"
+        - "analysis/inference_plan.qmd"
+        - "updated causal and structural design outputs"
+    gate: "G-FEASIBILITY"
+  - id: 11
+    key: "implementation"
+    owner_by_route:
+      causal: "implementation-causal-analysis"
+      historical-structural: "implementation-historical-structural-analysis"
+      hybrid: "orchestration-research-workflow"
+    method_override:
+      did: "implementation-difference-in-differences"
+    supporting_skills:
+      - "implementation-tables-and-appendices"
+      - "implementation-figures"
+      - "research-historical-measurement"
+      - "research-reproducibility-and-replication"
+    inputs:
+      - "final design"
+      - "clean data or organized source corpus"
+    outputs_by_route:
+      causal:
+        - "analysis/results.qmd"
+        - "analysis/model_registry.csv"
+        - "analysis/specification_log.csv"
+        - "analysis/r_code_quality.md"
+        - "tables/table_manifest.csv"
+        - "figures/figure_manifest.csv"
+        - "scripts/"
+        - "tables/"
+        - "figures/"
+      historical-structural:
+        - "analysis/structural_patterns.qmd"
+        - "analysis/structural_evidence_matrix.csv"
+        - "analysis/structural_analysis_log.csv"
+        - "analysis/r_code_quality.md"
+        - "tables/table_manifest.csv"
+        - "figures/figure_manifest.csv"
+        - "scripts/"
+        - "tables/"
+        - "figures/"
+      hybrid:
+        - "analysis/results.qmd"
+        - "analysis/structural_patterns.qmd"
+        - "analysis/model_registry.csv"
+        - "analysis/specification_log.csv"
+        - "analysis/structural_evidence_matrix.csv"
+        - "analysis/structural_analysis_log.csv"
+        - "analysis/r_code_quality.md"
+        - "tables/table_manifest.csv"
+        - "figures/figure_manifest.csv"
+        - "scripts/"
+        - "tables/"
+        - "figures/"
+    gate: "G-RESULTS"
+  - id: 12
+    key: "interpretation"
+    owner: "research-mechanism-mapping"
+    supporting_skills:
+      - "research-claim-evidence-mapping"
+      - "wiki-consult"
+      - "writing-paper-draft"
+      - "review-causal-historical-logic"
+      - "review-agrarian-environmental-history"
+      - "review-ecological-economics"
+      - "research-historical-source-criticism"
+      - "research-historical-measurement"
+    inputs_by_route:
+      causal:
+        - "analysis/results.qmd"
+        - "analysis/mechanism_map.qmd"
+        - "literature base"
+      historical-structural:
+        - "analysis/structural_patterns.qmd"
+        - "analysis/mechanism_map.qmd"
+        - "literature base"
+      hybrid:
+        - "analysis/results.qmd"
+        - "analysis/structural_patterns.qmd"
+        - "analysis/mechanism_map.qmd"
+        - "literature base"
+    outputs_by_route:
+      causal:
+        - "project/project_argument_profile.qmd"
+        - "analysis/interpretation.qmd"
+        - "analysis/discussion_argument_map.qmd"
+        - "analysis/claim_evidence_map.qmd"
+        - "analysis/results.qmd"
+      historical-structural:
+        - "project/project_argument_profile.qmd"
+        - "analysis/interpretation.qmd"
+        - "analysis/discussion_argument_map.qmd"
+        - "analysis/claim_evidence_map.qmd"
+        - "analysis/structural_patterns.qmd"
+      hybrid:
+        - "project/project_argument_profile.qmd"
+        - "analysis/interpretation.qmd"
+        - "analysis/discussion_argument_map.qmd"
+        - "analysis/claim_evidence_map.qmd"
+        - "analysis/results.qmd"
+        - "analysis/structural_patterns.qmd"
+    gate: "G-INTERPRETATION"
+  - id: 13
+    key: "first-draft"
+    owner: "writing-paper-draft"
+    supporting_skills:
+      - "scientific-writing"
+      - "alex-urrego-style"
+      - "implementation-tables-and-appendices"
+    inputs:
+      - "all design, results, interpretation, and literature outputs"
+      - "project/project_argument_profile.qmd with author approval when required"
+      - "analysis/interpretation.qmd"
+      - "analysis/discussion_argument_map.qmd"
+      - "analysis/claim_evidence_map.qmd"
+      - "declared journal family or target journal"
+    outputs:
+      - "paper/first_draft.qmd"
+      - "paper/first_draft.pdf"
+      - "paper/authorial_revision_log.md"
+      - "appendix/analytical_appendix.qmd"
+    gate: "G-DRAFT"
+  - id: 14
+    key: "internal-referee-review"
+    owner: "review-reviewer-core"
+    supporting_skills:
+      - "review-causal-historical-logic"
+      - "review-agrarian-environmental-history"
+      - "review-ecological-economics"
+    inputs:
+      - "paper/first_draft.qmd"
+      - "journal family or target journal"
+    outputs:
+      - "paper/referee_report.qmd"
+      - "paper/revision_priorities.md"
+    gate: "G-INTERNAL-REVIEW"
+  - id: 15
+    key: "revision"
+    owner: "writing-paper-draft"
+    supporting_skills:
+      - "scientific-writing"
+      - "research-claim-evidence-mapping"
+      - "implementation-tables-and-appendices"
+    inputs:
+      - "paper/referee_report.qmd"
+      - "current manuscript"
+      - "analysis outputs"
+      - "project/project_argument_profile.qmd"
+      - "analysis/discussion_argument_map.qmd"
+    outputs:
+      - "paper/revised_manuscript.qmd"
+      - "paper/revised_manuscript.pdf"
+      - "paper/revision_log.md"
+      - "appendix/analytical_appendix.qmd"
+    gate: "G-INTERNAL-REVIEW"
+  - id: 16
+    key: "journal-fit"
+    owner: "submission-journal-fit"
+    supporting_skills:
+      - "writing-title-abstract-keywords"
+    inputs:
+      - "revised manuscript"
+      - "contribution statement"
+    outputs:
+      - "submission/journal_fit.qmd"
+    gate: "G-JOURNAL-FIT"
+  - id: 17
+    key: "pre-submission-audit"
+    owner: "submission-pre-submission-audit"
+    supporting_skills:
+      - "research-claim-evidence-mapping"
+      - "submission-journal-fit"
+      - "research-reproducibility-and-replication"
+      - "implementation-tables-and-appendices"
+    inputs:
+      - "manuscript and all submission artifacts"
+      - "analysis pipeline and computational environment"
+      - "project profile, manifests, code-quality report, and skill-execution log"
+    outputs:
+      - "submission/pre_submission_audit.qmd"
+      - "submission/final_fix_list.md"
+      - "replication/README.md"
+      - "replication/manifest.csv"
+      - "replication/run_log.md"
+      - "replication/verification_report.md"
+    gate: "G-REPLICATION"
+  - id: 18
+    key: "submission-package"
+    owner: "submission-cover-letter"
+    supporting_skills:
+      - "writing-title-abstract-keywords"
+      - "research-reproducibility-and-replication"
+    inputs:
+      - "audited manuscript"
+      - "submission/pre_submission_audit.qmd"
+    outputs:
+      - "paper/title_abstract_keywords.qmd"
+      - "submission/cover_letter.qmd"
+      - "submission/submission_manifest.md"
+      - "replication/manifest.csv"
+    gate: "G-SUBMISSION"
+  - id: 19
+    key: "revision-resubmission"
+    owner: "revision-response-to-reviewers"
+    supporting_skills:
+      - "writing-paper-draft"
+      - "research-claim-evidence-mapping"
+      - "research-reproducibility-and-replication"
+      - "implementation-tables-and-appendices"
+    inputs:
+      - "decision letter"
+      - "reviewer reports"
+      - "submitted manuscript and analysis outputs"
+    outputs:
+      - "revision/response_to_reviewers.qmd"
+      - "revision/revised_manuscript.qmd"
+      - "revision/revised_manuscript.pdf"
+      - "revision/change_log.md"
+      - "revision/resubmission_manifest.md"
+      - "appendix/analytical_appendix.qmd"
+      - "replication/manifest.csv"
+      - "replication/run_log.md"
+      - "replication/verification_report.md"
+    gate: "G-RESUBMISSION"

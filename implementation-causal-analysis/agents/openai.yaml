@@ -1,0 +1,4 @@
+interface:
+  display_name: "Causal Analysis"
+  short_description: "General causal inference implementation in R"
+  default_prompt: "Use $implementation-causal-analysis to implement and diagnose this selected causal design in R."

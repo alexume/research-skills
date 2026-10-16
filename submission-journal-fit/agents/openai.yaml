@@ -1,0 +1,4 @@
+interface:
+  display_name: "Journal Fit"
+  short_description: "Journal-family fit and submission strategy"
+  default_prompt: "Use $submission-journal-fit to select a journal family, compare target journals, and recommend the required reframing."

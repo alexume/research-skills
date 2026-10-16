@@ -1,0 +1,4 @@
+interface:
+  display_name: "Wiki Consult"
+  short_description: "Retrieve wiki evidence for arguments and mechanisms"
+  default_prompt: "Use $wiki-consult in argument_support mode to assess this interpretive bridge and return exact evidence actions."

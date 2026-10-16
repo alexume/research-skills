@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hypothesis Generation"
+  short_description: "Generate mechanisms, predictions, and alternatives"
+  default_prompt: "Use $research-hypothesis-generation to develop competing testable hypotheses from these materials."

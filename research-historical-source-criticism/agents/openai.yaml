@@ -1,0 +1,4 @@
+interface:
+  display_name: "Historical Source Criticism"
+  short_description: "Critical appraisal of historical source evidence"
+  default_prompt: "Use $research-historical-source-criticism to assess the provenance, coverage, biases, and evidentiary limits of these historical sources."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ecological Economics Review"
+  short_description: "Specialist ecological economics manuscript review"
+  default_prompt: "Use $review-ecological-economics to review the socioecological concepts, methods, and historical claims in this work."

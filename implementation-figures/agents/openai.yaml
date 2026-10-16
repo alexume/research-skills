@@ -1,0 +1,4 @@
+interface:
+  display_name: "Academic Figures"
+  short_description: "Publication-quality academic figures in R"
+  default_prompt: "Use $implementation-figures to create or revise publication-quality figures for this analysis."

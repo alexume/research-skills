@@ -1,0 +1,4 @@
+interface:
+  display_name: "Academic Paper Drafting"
+  short_description: "Develop and draft evidence-bounded arguments"
+  default_prompt: "Use $writing-paper-draft to develop the argument architecture before drafting or restructuring this paper."

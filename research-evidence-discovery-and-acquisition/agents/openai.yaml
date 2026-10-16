@@ -1,0 +1,4 @@
+interface:
+  display_name: "Evidence Discovery and Acquisition"
+  short_description: "Find and acquire missing research evidence"
+  default_prompt: "Use $research-evidence-discovery-and-acquisition to identify evidence gaps and build a traceable acquisition plan."

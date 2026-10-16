@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mechanism Mapping"
+  short_description: "Synthesize mechanisms across empirical patterns"
+  default_prompt: "Use $research-mechanism-mapping to connect these patterns to mechanisms, mediations, rivals, and a relational synthesis."

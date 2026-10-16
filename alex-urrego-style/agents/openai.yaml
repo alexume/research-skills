@@ -1,0 +1,4 @@
+interface:
+  display_name: "Alex Urrego Academic Style"
+  short_description: "Latin American socioecological academic style"
+  default_prompt: "Use $alex-urrego-style to calibrate this argument and prose to the documented authorial reasoning patterns without copying prior project structures."

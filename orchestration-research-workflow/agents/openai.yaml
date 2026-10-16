@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Workflow"
+  short_description: "Stage-gated research and editorial orchestration"
+  default_prompt: "Use $orchestration-research-workflow to diagnose the project, select its journal family, and enforce the next interpretation or drafting gate."

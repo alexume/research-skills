@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pre-Submission Audit"
+  short_description: "Final academic manuscript readiness audit"
+  default_prompt: "Use $submission-pre-submission-audit to conduct a final go or no-go audit of this manuscript."

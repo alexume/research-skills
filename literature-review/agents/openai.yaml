@@ -1,0 +1,4 @@
+interface:
+  display_name: "Literature Review"
+  short_description: "Iterative, traceable review and corpus protocol"
+  default_prompt: "Use $literature-review to build an iterative, traceable corpus, reconcile search and screening records, reconstruct evidence lineages and debates, and synthesize only to the maturity achieved."

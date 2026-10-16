@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scientific Writing"
+  short_description: "Revise precise, author-owned academic prose"
+  default_prompt: "Use $scientific-writing to revise this prose and flag argument failures that require development before line editing."

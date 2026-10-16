@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hypothesis Refinement"
+  short_description: "Stress-test and prioritize research hypotheses"
+  default_prompt: "Use $research-hypothesis-refinement to refine and triage these hypotheses against evidence and feasibility."

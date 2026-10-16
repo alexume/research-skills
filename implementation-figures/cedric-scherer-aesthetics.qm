@@ -1,0 +1,171 @@
+# Cédric Scherer — Principles de Diseño y Estética para ggplot2
+
+## 🔷 Filosofía General
+- **Code-first approach**: 100% ggplot2, 0% post-procesamiento manual (Inkscape/Illustrator)
+- **Pasión por code + data + design**: cada visualización debe comunicar un mensaje claro combinando análisis riguroso y diseño cuidado
+- **Blog**: https://www.cedricscherer.com/ | Workshop: https://rstudio-conf-2022.github.io/ggplot2-graphic-design/
+
+## 🔷 Principios de Diseño (4 niveles)
+- **Information**: entender los datos y ser preciso
+- **Story**: tener claro el mensaje de la visualización
+- **Goal**: seleccionar gráficos que transmitan exitosamente la historia
+- **Visual form**: seguir reglas de diseño y principios de visualización de datos
+
+## 🔷 Paletas de Color
+### Tipos de paletas
+- **Secuenciales**: para información numérica con orden → ej: `scale_fill_viridis_c()`
+- **Divergentes**: para información numérica con punto medio crítico → ej: `scale_fill_distiller(palette = "RdBu")`
+- **Cualitativas**: para información categórica → máximo 6-8 colores
+### Reglas de color
+- Mapear el color de mayor contraste de una paleta secuencial al valor más importante
+- Para categorías: máximo 6-8 colores
+- Probar daltonismo con simulador CVD
+- Verificar contraste de los datos
+- Los colores provocan emociones en los espectadores (intencionalmente o no)
+- Ejemplo: temperatura en rojo → "veranos calurosos"; en azul → "veranos lluviosos/fríos"
+- Las asociaciones de color varían según cultura y contexto
+- Referencia: "Colors and Emotions in Data Visualization" (Jun 2021)
+### Recursos de paletas recomendados
+- VizPalette — colores en acción + chequeo daltonismo
+- palettte.app — construir/analizar/editar paletas suaves
+- Chroma.js — paletas multi-tono multi-parada
+- Data Color Picker — generador de paletas equidistantes
+- HCL Wizard — manipulación y evaluación de colores/paletas
+- Colormind — generador de esquemas de color
+- Poline — generador de paletas enigmáticas
+- Huemint — generador AI de paletas
+- Pigment — generador de paletas bicolor
+- Semantic Pixel Generator — pixelar imágenes y extraer paletas
+- Color Space — generador de paletas
+- ColorThief — extraer paletas de cualquier imagen
+- Poolors — combos de color menos usados
+### Guías de color
+- "Friendly Guide to Colors" (Lisa C. Muth / DataWrapper)
+- "What to Consider when Choosing Colors" (Lisa C. Muth / DataWrapper)
+
+## 🔷 Composición y Layout
+- **Small multiples**: usar `facet_wrap()` para evitar sobreposición y demasiadas categorías en color
+  - Problema: demasiadas categorías → límite recomendado 5-8 colores categóricos
+  - Solución: facetas, o destacar una categoría vs el resto en gris
+- **Panel spacing**: `panel.spacing = unit(.9, "lines")`
+- **Límite de ejes**: usar `expand = c(0, 0)` para eliminar padding por defecto
+- **Ordenar datos**: `fct_reorder()` para ordenar categorías por valor (no alfabético)
+  - No ordenar si hay orden interno (grupos de edad, ingresos)
+- **Automation**: `purrr::map()` + funciones custom para generar gráficos por subgrupo
+  - Ideal para: explorar distribuciones, comunicar resultados por grupo, generar reportes
+- **patchwork** para multi-panel
+
+## 🔷 Anotaciones y Etiquetas
+### Tips generales
+- Etiquetas directas aumentan accesibilidad y reducen "chart junk" (grid lines, axis labels, axis titles)
+- `geom_text()` / `geom_label()` para anotaciones relacionadas con datos
+- `annotate()` para anotaciones no relacionadas con datos
+- {ggtext} permite renderizar etiquetas con markdown y HTML básico
+  - También: saltos de línea dinámicos e imágenes
+- {ggrepel} asegura colocación inteligente de anotaciones
+- `ggforce::geom_mark_*()` proporciona anotaciones avanzadas
+- `annotation_custom(rasterGrob())` para añadir imágenes
+### Bar labeling
+- **Opción 1 (recomendada)**: usar `facet_wrap(~var, ncol = 1, scales = "free_x")` para mover etiquetas arriba de las barras
+  - Forzar todas las facetas en una columna + scales libres
+- **Opción 2**: `geom_text()` con desplazamiento
+- **Porcentajes dentro de barras**: calcular con `after_stat(count / sum(count))`
+- **Colores individuales por barra**: `scale_fill_manual()`
+- Referencia: "Yet Another How-to on Labelling Bar Graphs in ggplot2" (Oct 2023)
+
+## 🔷 Temas y Estilo General
+- **Nunca usar tema por defecto de ggplot2** (fondo gris)
+- **Tema minimalista preferido**: `theme_minimal()` como base
+- **Grid lines**: eliminar grid menor (`panel.grid.minor = element_blank()`)
+  - Grid mayor: opcional, fino y gris claro
+- **Fuentes**: `base_family` para tipografía consistente
+  - Recomendadas: "Spline Sans", "Anybody"
+  - {showtext} para fuentes personalizadas
+- **Margin**: `plot.margin = margin(10, 15, 10, 15)`
+- **Axis lines**: sutiles (`element_line(color = "grey80", linewidth = .4)`)
+- **Axis ticks**: igual sutiles
+- **Axis titles**: color "grey30"
+- **Axis text**: tamaño relativo consistente
+- **Bordes panel**: `element_rect(color = "grey45", fill = NA, linewidth = 1.5)` para panel.border
+- **Títulos**: `plot.title.position = "plot"` para alinear con el borde del gráfico
+- **Strip text (facetas)**: `size = rel(1)` para consistencia
+
+## 🔷 Chart Types y Recomendaciones
+| Tipo | Geometría | Notas |
+|------|-----------|-------|
+| **Boxplot clásico** | `geom_boxplot()` | Problema: oculta distribución, tamaño muestral, multimodalidad |
+| **Raincloud plot** | `geom_density()` + `geom_jitter()` + `geom_boxplot()` o `stat_halfeye()` | Muestra distribución + datos crudos + estadísticos |
+| **Strip plot / Jitter** | `geom_jitter(width = .15, alpha = .35)` | Alternativa superior al boxplot solo |
+| **Lollipop chart** | `geom_point()` + `geom_segment()` | Bueno para comparar medias por grupo |
+| **Bar chart** | `geom_col()` no `geom_bar()` | Horizontal si >5 categorías |
+| **Scatterplot** | `geom_point(alpha = .5, size = 2)` | Para small multiples con facetas |
+| **Tile map** | `geom_tile()` | Mapas basados en cuadrícula |
+- **Regla**: elegir el tipo de gráfico según el mensaje a comunicar
+- **Regla**: ordenar barras por valor (no alfabético) a menos que haya orden interno
+
+## 🔷 Principios de Comunicación Visual
+- **Título**: debe contar la historia, no solo describir
+- **Leyenda**: evitar cuando color/shape es obvio por facetas
+- **Cero engaños**: nunca truncar eje Y, siempre empezar barras en 0
+- **Escalas**: usar `scales::label_percent()` para porcentajes
+- **Colorblind-friendly**: paletas que funcionan en escala de grises
+  - Usar shape/linetype como respaldo
+- **Minimalismo**: remover elementos que no transportan información
+
+## 🔷 Automatización con purrr
+- **Caso de uso**: generar mismo gráfico para diferentes subconjuntos de datos
+- **Enfoque**: crear función de plotting, iterar con `purrr::map()`
+- **Ejemplo**: scatterplots por fabricante con datos de referencia en gris
+  - Destacar subgrupo con color, resto en gris (`shape = 1, color = "grey45"`)
+- **Paquetes clave**: {ggplot2} + {purrr} + {dplyr} + {patchwork}
+- Referencia: "Efficiency and Consistency: Automate Subset Graphics" (Jul 2023)
+
+## 🔷 Paquetes Recomendados
+### Instalación base tutorial
+- {ggplot2}, {tidyverse} (dplyr, tibble, tidyr, forcats)
+- {corrr} — matrices de correlación
+- {cowplot} — composición de ggplots
+- {ggforce} — sina plots, geom_mark
+- {ggrepel} — etiquetas inteligentes
+- {ggridges} — ridge plots
+- {ggsci} — paletas de revistas científicas
+- {ggtext} — texto avanzado (markdown/HTML)
+- {ggthemes} — temas adicionales
+- {grid}, {gridExtra} — objetos gráficos
+- {patchwork} — multi-panel
+- {prismatic} — manipulación de colores
+- {rcartocolor} — paletas perceptuales
+- {scico} — paletas perceptualmente uniformes
+- {showtext} — fuentes personalizadas
+### Interactivos
+- {charter}, {echarts4r}, {ggiraph}, {highcharter}, {plotly}
+### Automatización
+- {purrr}, {stringr}
+
+## 🔷 Paletas de Color específicas para ggplot2
+- **Cualitativas**: `scale_color_brewer(palette = "Set2")` (≤5 grupos), `"Dark2"` (6-8)
+- **Secuenciales**: `scale_fill_viridis_c(option = "C")`, `scale_fill_distiller(palette = "Blues")`
+- **Divergentes**: `scale_fill_distiller(palette = "RdBu", direction = 1)`
+- **Binarias**: `scale_color_manual(values = c("#2c7bb6", "#d7191c"))`
+- {ggsci} para paletas de revistas (Nature, Science, Lancet, etc.)
+- {rcartocolor} para paletas diseñadas cartográficamente
+- {scico} para paletas perceptuales (Scientific Colour Maps)
+
+## 🔷 Referencias y Enlaces
+- **Blog**: https://www.cedricscherer.com/
+- **Galería**: https://www.cedricscherer.com/top/dataviz/
+- **Workshop**: https://rstudio-conf-2022.github.io/ggplot2-graphic-design/
+- **Portfolio PDF**: https://www.cedricscherer.com/files/cedric-scherer-data-visualization-portfolio.pdf
+- **GitHub**: https://github.com/z3tt
+- **Recursos links**: https://www.cedricscherer.com/top/links/
+- **LinkedIn**: https://www.linkedin.com/in/cedricscherer/
+- **Calendly**: https://calendly.com/cedricscherer/lets-meet
+### Posts clave
+- "The Evolution of a ggplot" (May 2019): https://www.cedricscherer.com/2019/05/17/the-evolution-of-a-ggplot/
+- "A ggplot2 Tutorial for Beautiful Plotting in R" (Aug 2019): https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/
+- "Colors and Emotions in Data Visualization" (Jun 2021): https://www.cedricscherer.com/2021/06/08/colors-and-emotions-in-data-visualization/
+- "Yet Another How-to on Labelling Bar Graphs" (Oct 2023): https://www.cedricscherer.com/2023/10/26/yet-another-how-to-on-labelling-bar-graphs-in-ggplot2/
+- "Automate Subset Graphics with ggplot2 and purrr" (Jul 2023): https://www.cedricscherer.com/2023/07/05/efficiency-and-consistency-automate-subset-graphics-with-ggplot2-and-purrr/
+- "Raincloud Plots with ggplot2" (Jun 2021): https://www.cedricscherer.com/2021/06/06/visualizing-distributions-with-raincloud-plots-and-how-to-create-them-with-ggplot2/
+- "2-Day Workshop on Graphic Design with ggplot2" (Aug 2022): https://www.cedricscherer.com/2022/08/09/2-day-workshop-on-graphic-design-with-ggplot2-at-rstudioconf-2022/
+- "A Quick How-to on Labelling Bar Graphs" (Jul 2021): https://www.cedricscherer.com/2021/07/05/a-quick-how-to-on-labelling-bar-graphs-in-ggplot2/

@@ -1,0 +1,5 @@
+version: 1
+description: "Paths used by personal research skills. Written with %USERPROFILE% so the same file works on every machine; do not hardcode a Windows user name."
+
+paths:
+  knowledge_wiki_root: '%USERPROFILE%\OneDrive - Universitat de Barcelona\AlexF\Bibliografía\KnowledgeWiki'

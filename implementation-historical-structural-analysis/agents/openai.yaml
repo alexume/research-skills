@@ -1,0 +1,4 @@
+interface:
+  display_name: "Historical Structural Analysis"
+  short_description: "Implement historical structural analysis"
+  default_prompt: "Use $implementation-historical-structural-analysis to execute this approved historical-structural research design."

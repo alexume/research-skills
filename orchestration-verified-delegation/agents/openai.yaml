@@ -1,0 +1,4 @@
+interface:
+  display_name: "Verified Delegation"
+  short_description: "Risk-proportional delegation and verification"
+  default_prompt: "Use $orchestration-verified-delegation to choose direct, lightweight, or full verification for this task and apply only the controls its risks justify."
